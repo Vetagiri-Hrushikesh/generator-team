@@ -11,9 +11,10 @@ interface ColorControlProps {
 
 const ColorControl: React.FC<ColorControlProps> = ({ label, value, onChange }) => {
   const { state } = useGlobalState();
+  const { role, packageType } = state;
 
-  if (!canAccessFeature('backgroundColor', state.role, state.packageType)) {
-    return null;
+  if (!canAccessFeature('backgroundColor', role, packageType)) {
+      return null;
   }
 
   return (

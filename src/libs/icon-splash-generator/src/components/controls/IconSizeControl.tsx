@@ -5,9 +5,10 @@ import { canAccessFeature } from '../../config/featureAccess';
 
 const IconSizeControl = () => {
   const { state } = useGlobalState();
+  const { role, packageType } = state;
 
-  if (!canAccessFeature('iconSizeControl', state.role, state.packageType)) {
-    return null;
+  if (!canAccessFeature('iconSizeControl', role, packageType)) {
+      return null;
   }
 
   return (

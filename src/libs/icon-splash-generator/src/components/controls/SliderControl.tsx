@@ -13,9 +13,10 @@ interface SliderControlProps {
 
 const SliderControl: React.FC<SliderControlProps> = ({ label, value, onChange, min, max }) => {
   const { state } = useGlobalState();
+  const { role, packageType } = state;
 
-  if (!canAccessFeature('sizeControl', state.role, state.packageType)) {
-    return null;
+  if (!canAccessFeature('sizeControl', role, packageType)) {
+      return null;
   }
 
   return (
