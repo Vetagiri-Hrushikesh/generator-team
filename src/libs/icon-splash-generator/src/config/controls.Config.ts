@@ -1,7 +1,7 @@
-import { SET_BACKGROUND, SET_ICON_SIZE, useGlobalState } from '../providers/GlobalProvider';
 import ColorControl from '../components/controls/ColorControl';
 import SliderControl from '../components/controls/SliderControl';
 import { ControlConfig } from '../types';
+import { SET_BACKGROUND, SET_ICON_SIZE } from '../utils/actionTypes';
 
   
 export const getControlsConfig = (state: any, dispatch: any): ControlConfig[] => [

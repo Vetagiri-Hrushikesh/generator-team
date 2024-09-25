@@ -1,23 +1,28 @@
 import React from 'react';
 import { Box, List, ListItem, ListItemButton, Typography } from '@mui/material';
-import { Home, Favorite, Build, Search, Alarm, AccountCircle } from '@mui/icons-material';
 import { useGlobalState } from '../../../providers/GlobalProvider';
-
-const iconsArray = [
-  { icon: Home, name: 'Home' },
-  { icon: Favorite, name: 'Favorite' },
-  { icon: Build, name: 'Build' },
-  { icon: Search, name: 'Search' },
-  { icon: Alarm, name: 'Alarm' },
-  { icon: AccountCircle, name: 'AccountCircle' }
-];
+import { Home, Favorite, Build, Search, Alarm, AccountCircle } from '@mui/icons-material';
 
 const ClipartSelector: React.FC = () => {
-  const { dispatch } = useGlobalState(); 
+  const { state, dispatch } = useGlobalState();
+  const { isAuthenticated, packageType, role } = state;
 
-  const handleIconSelect = (icon: React.ComponentType) => {
+  if (!isAuthenticated || packageType === 'basic' || role !== 'admin') {
+    return <Typography>No access</Typography>;
+  }
+
+  const handleIconSelect = (icon: React.ElementType) => {
     dispatch({ type: 'SET_ICON', payload: icon });
   };
+
+  const iconsArray = [
+    { icon: Home, name: 'Home' },
+    { icon: Favorite, name: 'Favorite' },
+    { icon: Build, name: 'Build' },
+    { icon: Search, name: 'Search' },
+    { icon: Alarm, name: 'Alarm' },
+    { icon: AccountCircle, name: 'AccountCircle' }
+  ];
 
   return (
     <Box>

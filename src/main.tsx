@@ -7,9 +7,15 @@ import { GlobalProvider } from 'icon-splash-generator';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const isAuthenticated = true;
+const packageType = 'premium';
+const role = 'admin';
+
+
 root.render(
   <StrictMode>
-    <GlobalProvider>
+    <GlobalProvider isAuthenticated={isAuthenticated} packageType={packageType} role={role}>
         <App />
     </GlobalProvider>
   </StrictMode>

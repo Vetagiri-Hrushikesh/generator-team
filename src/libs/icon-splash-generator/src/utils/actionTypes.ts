@@ -1,3 +1,6 @@
-export const SET_ICON = 'SET_ICON' as const;
-export const SET_BACKGROUND = 'SET_BACKGROUND' as const;
-export const SET_ICON_SIZE = 'SET_ICON_SIZE' as const;
+export const SET_ICON = 'SET_ICON';
+export const SET_BACKGROUND = 'SET_BACKGROUND';
+export const SET_ICON_SIZE = 'SET_ICON_SIZE';
+export const SET_AUTHENTICATION = 'SET_AUTHENTICATION';
+export const SET_PACKAGE_TYPE = 'SET_PACKAGE_TYPE';
+export const SET_ROLE = 'SET_ROLE';
