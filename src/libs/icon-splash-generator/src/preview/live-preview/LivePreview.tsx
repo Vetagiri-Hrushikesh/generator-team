@@ -1,9 +1,8 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useGlobalState } from '../../providers/GlobalProvider';
 
-// Live preview component
-const LivePreview = () => {
+const LivePreview: React.FC = () => {
   const { state } = useGlobalState();
   const { selectedIcon, selectedBackground, selectedIconSize } = state;
 
@@ -21,11 +20,9 @@ const LivePreview = () => {
       }}
     >
       {selectedIcon ? (
-        <Box sx={{ color: '#000' }}> {/* Default color is black */}
-          {React.createElement(selectedIcon, { style: { fontSize: selectedIconSize || 150, color: '#000' } })}
-        </Box>
+        React.createElement(selectedIcon, { style: { fontSize: selectedIconSize || 150 } })
       ) : (
-        <Box>No Icon Selected</Box>
+        <Typography>No Icon Selected</Typography>
       )}
     </Box>
   );

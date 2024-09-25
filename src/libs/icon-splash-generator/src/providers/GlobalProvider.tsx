@@ -1,31 +1,16 @@
-import React, { createContext, useContext, useReducer } from 'react';
+// src/providers/GlobalProvider.tsx
+import React, { createContext, useContext, useReducer, ReactNode } from 'react';
+import { SET_ICON, SET_BACKGROUND, SET_ICON_SIZE } from '../utils/actionTypes';
+import { GlobalState, GlobalAction } from '../types';
 
-// Define action types as string literals
-export const SET_ICON = 'SET_ICON' as const;
-export const SET_BACKGROUND = 'SET_BACKGROUND' as const;
-export const SET_ICON_SIZE = 'SET_ICON_SIZE' as const;
-
-// Define Global State interface
-interface GlobalState {
-  selectedIcon: React.ComponentType | null;
-  selectedBackground: string;
-  selectedIconSize: number;
-}
-
-// Initial State
+// Initial state for the global context
 const defaultState: GlobalState = {
   selectedIcon: null,
   selectedBackground: '#ffffff',
   selectedIconSize: 150,
 };
 
-// Actions type union
-type GlobalAction = 
-  | { type: typeof SET_ICON; payload: React.ComponentType }
-  | { type: typeof SET_BACKGROUND; payload: string }
-  | { type: typeof SET_ICON_SIZE; payload: number };
-
-// Reducer function
+// Reducer function to manage the global state
 const globalReducer = (state: GlobalState, action: GlobalAction): GlobalState => {
   switch (action.type) {
     case SET_ICON:
@@ -39,16 +24,14 @@ const globalReducer = (state: GlobalState, action: GlobalAction): GlobalState =>
   }
 };
 
-// Create Context
-interface GlobalContextProps {
+// Create the global state context
+const GlobalContext = createContext<{
   state: GlobalState;
   dispatch: React.Dispatch<GlobalAction>;
-}
-
-const GlobalContext = createContext<GlobalContextProps | null>(null);
+} | null>(null);
 
 // GlobalProvider component
-export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
+export const GlobalProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(globalReducer, defaultState);
 
   return (
@@ -58,11 +41,15 @@ export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-// Custom hook to use global state
+// Custom hook to access global state
 export const useGlobalState = () => {
   const context = useContext(GlobalContext);
-  if (!context) {
-    throw new Error('useGlobalState must be used within a GlobalProvider');
-  }
+  if (!context) throw new Error('useGlobalState must be used within a GlobalProvider');
   return context;
 };
+export {
+  SET_ICON_SIZE,
+  // Reducer function to manage the global state
+  SET_BACKGROUND
+};
+

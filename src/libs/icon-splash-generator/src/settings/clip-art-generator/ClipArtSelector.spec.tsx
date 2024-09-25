@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import ClipArtGenerator from './ClipArtGenerator';
+import ClipArtGenerator from './ClipArtSelector';
 
 describe('ClipArtGenerator', () => {
   it('should render successfully', () => {
