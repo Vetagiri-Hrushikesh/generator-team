@@ -1,0 +1,9 @@
+{
+  "name": "icon-splash-generator",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "src/libs/icon-splash-generator/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project icon-splash-generator --web",
+  "targets": {}
+}
