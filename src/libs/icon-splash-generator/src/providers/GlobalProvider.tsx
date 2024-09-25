@@ -1,4 +1,3 @@
-// src/providers/GlobalProvider.tsx
 import React, { createContext, useContext, useReducer, ReactNode } from 'react';
 import { SET_ICON, SET_BACKGROUND, SET_ICON_SIZE } from '../utils/actionTypes';
 import { GlobalState, GlobalAction } from '../types';

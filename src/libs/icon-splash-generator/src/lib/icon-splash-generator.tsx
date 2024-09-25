@@ -1,4 +1,3 @@
-// src/components/IconSplashGenerator/IconSplashGenerator.tsx
 import React, { useState } from 'react';
 import { Box, Tabs, Tab, Typography, TextField, Slider } from '@mui/material';
 import ClipartSelector from '../settings/clip-art-generator/ClipArtSelector';
