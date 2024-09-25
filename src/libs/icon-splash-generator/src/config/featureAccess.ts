@@ -1,15 +1,27 @@
-// src/config/featureAccess.js
-const featureAccessConfig = {
-    livePreview: {
-        isAuthenticated: true,
-        roles: ['admin', 'editor'],
-        packages: ['premium']
-    },
-    clipArtSelector: {
-        isAuthenticated: true,
-        roles: ['admin', 'user', 'editor'],
-        packages: ['basic', 'premium']
-    },
-    // Add more features as needed
+type PackageType = 'basic' | 'premium';
+type FeatureKey = 'iconSizeControl' | 'sizeControl' | 'backgroundColor';
+
+interface FeatureConfig {
+  [key: string]: {
+    [key in PackageType]: boolean;
+  };
+}
+
+const featureAccessConfig: FeatureConfig = {
+  iconSizeControl: {
+    premium: true,
+    basic: true,
+  },
+  sizeControl: {
+    premium: true,
+    basic: true,
+  },
+  backgroundColor: {
+    premium: true,
+    basic: false,
+  }
 };
-export default featureAccessConfig;
+
+export const canAccessFeature = (feature: FeatureKey, role: string, packageType: PackageType): boolean => {
+  return featureAccessConfig[feature][packageType];
+};

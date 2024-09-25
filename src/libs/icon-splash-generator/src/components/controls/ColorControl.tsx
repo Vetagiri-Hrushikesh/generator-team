@@ -1,5 +1,7 @@
 import React from 'react';
 import { TextField, Typography } from '@mui/material';
+import { useGlobalState } from '../../providers/GlobalProvider';
+import { canAccessFeature } from '../../config/featureAccess';
 
 interface ColorControlProps {
   label: string;
@@ -7,16 +9,24 @@ interface ColorControlProps {
   onChange: (newValue: string) => void;
 }
 
-const ColorControl: React.FC<ColorControlProps> = ({ label, value, onChange }) => (
-  <div>
-    <Typography>{label}</Typography>
-    <TextField
-      type="color"
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      fullWidth
-    />
-  </div>
-);
+const ColorControl: React.FC<ColorControlProps> = ({ label, value, onChange }) => {
+  const { state } = useGlobalState();
+
+  if (!canAccessFeature('backgroundColor', state.role, state.packageType)) {
+    return null;
+  }
+
+  return (
+    <div>
+      <Typography>{label}</Typography>
+      <TextField
+        type="color"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        fullWidth
+      />
+    </div>
+  );
+};
 
 export default ColorControl;
