@@ -1,35 +1,14 @@
 import React, { useState } from 'react';
-import { Box, Tabs, Tab, Typography, TextField, Slider } from '@mui/material';
-import ClipartSelector from '../settings/clip-art-generator/ClipArtSelector';
-import LivePreview from '../preview/live-preview/LivePreview';
-import { SET_BACKGROUND, SET_ICON_SIZE, useGlobalState } from '../providers/GlobalProvider';
-import { useTransientState } from '../hooks/useTransientState';
-
-function TabPanel(props: { children?: React.ReactNode; index: number; value: number }) {
-  const { children, value, index, ...other } = props;
-  return (
-    <div role="tabpanel" hidden={value !== index} {...other}>
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-    </div>
-  );
-}
+import { Box, Tabs, Tab } from '@mui/material';
+import ClipartSelector from '../components/settings/clip-art-selector/ClipArtSelector';
+import LivePreview from '../components/preview/live-preview/LivePreview';
+import ControlPanel from '../components/ControlPanel';
 
 const IconSplashGenerator: React.FC = () => {
   const [primaryTab, setPrimaryTab] = useState(0);
-  const { state, dispatch } = useGlobalState();
-  const { state: backgroundState, setState: setBackgroundState } = useTransientState<string>('#ffffff');
 
   const handlePrimaryTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setPrimaryTab(newValue);
-  };
-
-  const handleBackgroundColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setBackgroundState(event.target.value);
-    dispatch({ type: SET_BACKGROUND, payload: event.target.value });
-  };
-
-  const handleIconSizeChange = (event: Event, newValue: number | number[]) => {
-    dispatch({ type: SET_ICON_SIZE, payload: newValue as number });
   };
 
   return (
@@ -41,28 +20,13 @@ const IconSplashGenerator: React.FC = () => {
           <Tab label="Image" />
         </Tabs>
 
-        <TabPanel value={primaryTab} index={0}>
-          <ClipartSelector />
-        </TabPanel>
-
-        {/* Background color and icon size controls */}
+        {/* Clipart Selector */}
         <Box sx={{ mt: 4 }}>
-          <Typography>Background Color</Typography>
-          <TextField
-            type="color"
-            value={backgroundState}
-            onChange={handleBackgroundColorChange}
-            fullWidth
-          />
-          <Typography sx={{ mt: 2 }}>Icon Size</Typography>
-          <Slider
-            value={state.selectedIconSize || 150}
-            onChange={handleIconSizeChange}
-            min={50}
-            max={300}
-            valueLabelDisplay="auto"
-          />
+          <ClipartSelector />
         </Box>
+
+        {/* Dynamic Control Panel */}
+        <ControlPanel />
       </Box>
 
       {/* Right Panel for Preview */}

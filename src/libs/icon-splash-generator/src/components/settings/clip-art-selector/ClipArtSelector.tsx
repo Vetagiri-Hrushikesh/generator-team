@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, List, ListItem, ListItemButton, Typography } from '@mui/material';
 import { Home, Favorite, Build, Search, Alarm, AccountCircle } from '@mui/icons-material';
-import { useGlobalState } from '../../providers/GlobalProvider';
+import { useGlobalState } from '../../../providers/GlobalProvider';
 
 const iconsArray = [
   { icon: Home, name: 'Home' },

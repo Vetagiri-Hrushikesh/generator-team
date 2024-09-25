@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import { useGlobalState } from '../../providers/GlobalProvider';
+import { useGlobalState } from '../../../providers/GlobalProvider';
 
 const LivePreview: React.FC = () => {
   const { state } = useGlobalState();

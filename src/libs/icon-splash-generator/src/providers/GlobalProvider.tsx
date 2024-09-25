@@ -5,7 +5,7 @@ import { GlobalState, GlobalAction } from '../types';
 // Initial state for the global context
 const defaultState: GlobalState = {
   selectedIcon: null,
-  selectedBackground: '#ffffff',
+  selectedBackground: 'transparent',
   selectedIconSize: 150,
 };
 
@@ -46,9 +46,5 @@ export const useGlobalState = () => {
   if (!context) throw new Error('useGlobalState must be used within a GlobalProvider');
   return context;
 };
-export {
-  SET_ICON_SIZE,
-  // Reducer function to manage the global state
-  SET_BACKGROUND
-};
+export { SET_ICON_SIZE, SET_BACKGROUND };
 
