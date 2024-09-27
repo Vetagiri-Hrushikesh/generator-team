@@ -2,7 +2,7 @@ import { ControlConfig, PackageType, RoleType, FeatureKey, RoleBasedAccess, Glob
 import SliderControl from '../components/controls/IconSizeControl';
 import ColorControl from '../components/controls/BackgroundColor';
 import { SET_BACKGROUND, SET_ICON_SIZE } from '../utils/actionTypes';
-import { useGlobalState } from '../providers/GlobalProvider';
+import { useGlobalState } from '../providers/GlobalContext';
 
 const featureAccessConfig: { [key in FeatureKey]: RoleBasedAccess } = {
   ClipartSelector: {
@@ -49,4 +49,3 @@ export const getAllowedControls = (
 
   return controls;
 };
-
