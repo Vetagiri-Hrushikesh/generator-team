@@ -1,7 +1,9 @@
+// src/controllers/DisplayController.tsx
+
 import React, { useEffect } from 'react';
 import { useGlobalState } from '../providers/GlobalContext';
 import { getAllowedFeatures } from '../handlers/featureHandlers';
-import { getAllowedControls } from '../handlers/controlHandlers';
+import { generateControls } from '../handlers/controlHandlers';
 import FeatureController from './FeatureController';
 import ControlController from './ControlController';
 
@@ -22,15 +24,17 @@ const DisplayController: React.FC = () => {
   useEffect(() => {
     if (!isAuthenticated) return;
 
-    // Get the features and controls allowed for the current user.
+    // Get the features allowed for the current user.
     const allowedFeatures = getAllowedFeatures(packageType, role);
-    const allowedControls = getAllowedControls(packageType, role, state, dispatch);
+    
+    // Generate controls based on allowed features.
+    const allowedControls = generateControls(allowedFeatures, dispatch);
 
     // Update the state with the fetched features and controls.
     dispatch({ type: 'SET_FEATURES', payload: allowedFeatures });
     dispatch({ type: 'SET_CONTROLS', payload: allowedControls });
 
-  }, [isAuthenticated, role, packageType, state, dispatch]); // Dependencies for re-running the effect.
+  }, [isAuthenticated, role, packageType]); // Dependencies for re-running the effect.
 
   // If the user is not authenticated, do not render anything.
   if (!isAuthenticated) {

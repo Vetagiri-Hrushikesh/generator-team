@@ -2,33 +2,28 @@ import React from 'react';
 import { Slider, Typography } from '@mui/material';
 
 interface IconSizeControlProps {
-  label: string;             // Label to display above the slider.
-  value: number;             // Current value of the slider.
-  onChange: (newValue: number) => void; // Callback function to handle slider value change.
-  min: number;               // Minimum value for the slider.
-  max: number;               // Maximum value for the slider.
+  label: string;             // Text to display above the slider.
+  onChange: (newValue: number) => void; // Function to call when the slider value changes.
+  min: number;               // Minimum value the slider can represent.
+  max: number;               // Maximum value the slider can represent.
 }
 
 /**
- * IconSizeControl Component
- * 
- * A reusable slider component that allows adjusting a numerical value between a defined range.
- * 
- * @param {IconSizeControlProps} props - The props for the component.
- * @returns JSX.Element - The rendered slider component.
+ * Renders a slider component that allows users to select a numerical value within a specified range.
+ * The component is designed to be controlled by the parent component to ensure it can be integrated into forms or other UI elements that manage state externally.
+ *
+ * @param {IconSizeControlProps} props - Props for the component including label, onChange handler, and min/max values.
+ * @returns {JSX.Element} - The slider component with a label, configured with provided min and max values.
  */
-const IconSizeControl: React.FC<IconSizeControlProps> = React.memo(({ label, value, onChange, min, max }) => {
+const IconSizeControl: React.FC<IconSizeControlProps> = React.memo(({ label, onChange, min, max }) => {
   return (
     <div>
-      {/* Display the label above the slider */}
       <Typography>{label}</Typography>
-      {/* Render a slider with defined min and max values */}
       <Slider
-        value={value}
         onChange={(e, newValue) => onChange(newValue as number)}
         min={min}
         max={max}
-        valueLabelDisplay="auto" // Display value labels while sliding
+        valueLabelDisplay="auto" // Automatically displays the value label when the user interacts with the slider.
       />
     </div>
   );

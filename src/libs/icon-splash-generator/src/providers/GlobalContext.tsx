@@ -1,7 +1,5 @@
 import React, { createContext, useContext, useReducer, ReactNode, useEffect, useMemo } from 'react';
 import { globalReducer, defaultState } from './reducer';
-import { getAllowedFeatures } from '../handlers/featureHandlers';
-import { getAllowedControls } from '../handlers/controlHandlers';
 import { GlobalState, GlobalAction } from '../types';
 
 // Create a context for holding global state and a dispatch method.

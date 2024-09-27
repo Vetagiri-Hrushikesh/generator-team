@@ -2,29 +2,23 @@ import React from 'react';
 import { TextField, Typography } from '@mui/material';
 
 interface BackgroundColorControlProps {
-  label: string;                        // Label to display above the color input.
-  value: string;                        // Current color value.
-  onChange: (newValue: string) => void; // Callback function to handle color change.
+  label: string;                        // Text to display above the color input field.
+  onChange: (newValue: string) => void; // Function to call when the color value changes.
 }
 
 /**
- * BackgroundColorControl Component
+ * Renders a color picker input that allows users to select a color.
+ * This component does not manage its own state but relies on the parent component to control its behavior through props.
  * 
- * A reusable color picker input component that accepts a label and a color value.
- * It allows the user to select a color using the native HTML color input.
- * 
- * @param {BackgroundColorControlProps} props - The props for the component.
- * @returns JSX.Element - The rendered color picker component.
+ * @param {BackgroundColorControlProps} props - Props for the component including label and onChange handler.
+ * @returns {JSX.Element} - The color picker component with a label.
  */
-const BackgroundColorControl: React.FC<BackgroundColorControlProps> = React.memo(({ label, value, onChange }) => {
+const BackgroundColorControl: React.FC<BackgroundColorControlProps> = React.memo(({ label, onChange }) => {
   return (
     <div>
-      {/* Display the label above the color picker */}
       <Typography>{label}</Typography>
-      {/* Render a color picker input with full width */}
       <TextField
         type="color"
-        value={value}
         onChange={(e) => onChange(e.target.value)}
         fullWidth
       />
