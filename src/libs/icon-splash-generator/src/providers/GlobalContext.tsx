@@ -23,14 +23,6 @@ export const GlobalProvider = ({ children, isAuthenticated, packageType, role }:
   useEffect(() => {
     // Prevent any actions if the user is not authenticated.
     if (!isAuthenticated) return;
-
-    // Retrieve features and controls allowed for the user based on their package and role.
-    const features = getAllowedFeatures(packageType, role);
-    const controls = getAllowedControls(packageType, role, state, dispatch);
-  
-    // Dispatch actions to update the state with new features and controls.
-    dispatch({ type: 'SET_FEATURES', payload: features });
-    dispatch({ type: 'SET_CONTROLS', payload: controls });
   }, [packageType, role, isAuthenticated, state, dispatch]);
 
   // Memoize the context value to prevent unnecessary re-renders.
