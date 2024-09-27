@@ -1,22 +1,28 @@
 import React from 'react';
-import { useGlobalState } from '../../providers/GlobalProvider';
-import { canAccessFeature } from '../../config/featureAccess';
+import { Slider, Typography } from '@mui/material';
 
+interface SliderControlProps {
+  label: string;
+  value: number;
+  onChange: (newValue: number) => void;
+  min: number;
+  max: number;
+}
 
-const IconSizeControl = () => {
-  const { state } = useGlobalState();
-  const { role, packageType } = state;
-
-  if (!canAccessFeature('iconSizeControl', role, packageType)) {
-      return null;
-  }
+const SliderControl: React.FC<SliderControlProps> = ({ label, value, onChange, min, max }) => {
 
   return (
     <div>
-      <h2>Adjust Icon Size</h2>
-      <input type="range" min="10" max="100" />
+      <Typography>{label}</Typography>
+      <Slider
+        value={value}
+        onChange={(e, newValue) => onChange(newValue as number)}
+        min={min}
+        max={max}
+        valueLabelDisplay="auto"
+      />
     </div>
   );
 };
 
-export default IconSizeControl;
+export default SliderControl;

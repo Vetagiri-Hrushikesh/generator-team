@@ -26,7 +26,6 @@ const ClipartSelector: React.FC = () => {
 
   return (
     <Box>
-      <Typography variant="h6">Select Clipart (Icon)</Typography>
       <List sx={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 1 }}>
         {iconsArray.map((item, index) => (
           <ListItem key={index} disablePadding>

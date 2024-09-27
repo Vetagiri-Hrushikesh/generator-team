@@ -4,3 +4,5 @@ export const SET_ICON_SIZE = 'SET_ICON_SIZE';
 export const SET_AUTHENTICATION = 'SET_AUTHENTICATION';
 export const SET_PACKAGE_TYPE = 'SET_PACKAGE_TYPE';
 export const SET_ROLE = 'SET_ROLE';
+export const SET_FEATURES = 'SET_FEATURES';
+export const SET_CONTROLS = 'SET_CONTROLS';
